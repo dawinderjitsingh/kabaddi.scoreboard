@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabaddi Scoreboard Input</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scoreboard">
+        <h1>Kabaddi Scoreboard Input</h1>
+        <div class="match-type">
+            <input type="text" id="matchTypeInput" placeholder="Enter Match Type" />
+            <button onclick="updateMatchType()">Update Match Type</button>
+            <button onclick="toggleMatchType()">Hide Match Type</button>
+        </div>
+        <div class="teams">
+            <div class="team">
+                <input type="text" id="teamAName" placeholder="Team A Name" />
+                <h2 id="teamAHeader">Team A</h2>
+                <p id="scoreA">0</p>
+                <button onclick="addPoint('A', 1.5)">+1.5</button>
+                <button onclick="addPoint('A', 1)">+1</button>
+                <button onclick="addPoint('A', 2)">+2</button>
+                <button onclick="addPoint('A', 5)">+5</button>
+                <button onclick="subtractPoint('A', 1)">-1</button>
+                <button onclick="subtractPoint('A', 2)">-2</button>
+                <button onclick="subtractPoint('A', 5)">-5</button>
+                <button onclick="resetScore('A')">Reset Score</button>
+                <button onclick="updateTeamName('A')">Update Name</button>
+            </div>
+            <div class="team">
+                <input type="text" id="teamBName" placeholder="Team B Name" />
+                <h2 id="teamBHeader">Team B</h2>
+                <p id="scoreB">0</p>
+                <button onclick="addPoint('B', 1.5)">+1.5</button>
+                <button onclick="addPoint('B', 1)">+1</button>
+                <button onclick="addPoint('B', 2)">+2</button>
+                <button onclick="addPoint('B', 5)">+5</button>
+                <button onclick="subtractPoint('B', 1)">-1</button>
+                <button onclick="subtractPoint('B', 2)">-2</button>
+                <button onclick="subtractPoint('B', 5)">-5</button>
+                <button onclick="resetScore('B')">Reset Score</button>
+                <button onclick="updateTeamName('B')">Update Name</button>
+            </div>
+        </div>
+        <button onclick="viewScoreboard()">Show Scoreboard</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

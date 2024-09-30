@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabaddi Scoreboard Display</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f2f2f2; /* Light gray background */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .scoreboard {
+            background-color: #fff; /* White background for scoreboard */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            padding: 20px;
+            margin: auto;
+            max-width: 600px; /* Maximum width */
+        }
+        .match-type {
+            font-size: 20px; /* Slightly larger font */
+            color: #666; /* Lighter text color */
+            margin-bottom: 20px;
+        }
+        .team-box {
+            display: flex;
+            justify-content: space-between; /* Space between name and score */
+            align-items: center; /* Center align */
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px;
+            margin: 10px 0; /* Margin between boxes */
+            background-color: #e9ecef; /* Light background for team boxes */
+        }
+        .team-box:hover {
+            background-color: #d1e7dd; /* Change background on hover */
+        }
+        .team-box h2 {
+            color: #007bff; /* Blue color for team names */
+            margin: 0; /* Remove default margin */
+        }
+        .score {
+            font-size: 36px; /* Larger score font size */
+            font-weight: bold; /* Bold score */
+            margin-left: 20px; /* Space between score and name */
+            color: #333; /* Darker text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreboard">
+        <div class="match-type" id="matchTypeDisplay">Match Type: Semi-Final</div>
+        <div class="teams" id="scoreboardDisplay">
+            <div class="team-box">
+                <h2 id="teamAHeader">Team A</h2>
+                <p class="score" id="scoreA">0</p> <!-- Team A ka score pehle -->
+            </div>
+            <div class="team-box">
+                <h2 id="teamBHeader">Team B</h2>
+                <p class="score" id="scoreB">0</p> <!-- Team B ka score -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateDisplay() {
+            const scores = JSON.parse(localStorage.getItem('kabaddiScores')) || {
+                scoreA: 0,
+                scoreB: 0,
+                matchType: 'Semi-Final',
+                teamAName: 'Team A',
+                teamBName: 'Team B',
+                matchTypeVisible: true,
+            };
+
+            document.getElementById('scoreA').innerText = scores.scoreA;
+            document.getElementById('scoreB').innerText = scores.scoreB;
+            document.getElementById('teamAHeader').innerText = scores.teamAName;
+            document.getElementById('teamBHeader').innerText = scores.teamBName;
+
+            const matchTypeDisplay = document.getElementById('matchTypeDisplay');
+            if (scores.matchTypeVisible) {
+                matchTypeDisplay.innerText = `Match Type: ${scores.matchType}`;
+            } else {
+                matchTypeDisplay.innerText = '';
+            }
+        }
+
+        setInterval(updateDisplay, 1000); // Update every second
+
+        // Initial call to set display based on local storage
+        updateDisplay();
+    </script>
+</body>
+</html>
